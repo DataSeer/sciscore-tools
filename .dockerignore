@@ -1,0 +1,9 @@
+# nodejs dependencies
+node_modules/
+
+# git dependencies
+.git/
+.gitignore
+
+# logs
+*.log
