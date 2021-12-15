@@ -6,7 +6,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common
-RUN apt-get install -y curl python3 python3-pip pdftotext
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get install -y curl python3 python3-pip poppler-utils
 
 # RUN npm install
 RUN pip install fasttext spacy numpy requests Unidecode

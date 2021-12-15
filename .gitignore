@@ -1,2 +1,6 @@
 lib/auth.json
 lib/methods-model.bin
+
+conf/*.json
+
+node_modules/
