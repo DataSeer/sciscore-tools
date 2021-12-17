@@ -24,6 +24,7 @@ app.set(`port`, process.env.PORT || 3200);
 app.use(logger(`dev`));
 app.use(methodOverride());
 app.use(bodyParser.urlencoded({ limit: `10mb`, extended: true }));
+app.use(bodyParser.json({ limit: `50mb`, extended: true }));
 
 app.use(`/`, indexRouter);
 
