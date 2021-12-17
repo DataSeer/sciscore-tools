@@ -22,7 +22,7 @@ docker build -t sciscore-tools:latest .
 # delete old container
 docker rm -f sciscore
 # run a new container
-docker run -it -p 3200:3200 -v /home/nicolas/Projects/dataseer-web/data:/app/data --name sciscore sciscore-tools:latest
+docker run -it -p 3200:3200 -v /home/user/dataseer-web/data:/app/data --name sciscore sciscore-tools:latest
 ```
 
 ## Available routes
