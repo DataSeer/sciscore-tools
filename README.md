@@ -2,7 +2,7 @@
 
 ## Description
 
-- This module is a nodejs wrapper of [this tool] (https://github.com/PeterEckmann1/sciscore-tools).
+- This module is a nodejs wrapper of [this tool](https://github.com/PeterEckmann1/sciscore-tools).
 - The Python scripts/libraries are encapsulated in a web server (API).
 - The container must be "connected" to the DataSeer (DS) file system (FS). *It will "share" the same FS.*
 - You should not open the port used by the container (internal, non-public process).
