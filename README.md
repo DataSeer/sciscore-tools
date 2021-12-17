@@ -1,23 +1,74 @@
 # sciscore-tools
 
-A set of tools to extract text from various file formats, run it through SciScore, and extract the results.
+## Description
 
-## Setup
+- This module is a nodejs wrapper of [this tool] (https://github.com/PeterEckmann1/sciscore-tools).
+- The Python scripts/libraries are encapsulated in a web server (API).
+- The container must be "connected" to the DataSeer (DS) file system (FS). *It will "share" the same FS.*
+- You should not open the port used by the container (internal, non-public process).
+- It will write the results files (report.json and [DS ID file].csv) directly to the DS FS. You must add these files in the DS worklow
 
-Should work on any Python 3 verison.
+## Install
 
- * Install the requires packages with `pip install fasttext spacy numpy requests Unidecode`
- * `pdftotext` must also be installed from https://www.xpdfreader.com/download.html
- * Obtain the `methods-model.bin` file and place it in the same directory as `pdftools.py`
- * Obtain a `auth.json` file with your SciScore API credentials
+### Docker
 
-## Text extraction and API querying
+Some useful command lines for creating images and deploying containers
 
-First create a SciScore object with 
+```bash
+# build the new image (delete the old ones afterwards)
+docker build -t sciscore-tools:latest .
+# delete old container
+docker rm -f sciscore
+# run a new container
+docker run -it -p 3200:3200 -v /home/nicolas/Projects/dataseer-web/data:/app/data --name sciscore sciscore-tools:latest
 ```
-import sciscore
-api = sciscore.SciScore('report_folder')
+
+## Available routes
+
+### (GET) /processFile/
+
+#### Description
+
+This route process the given file (using sciscore-tools).
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Parameters</th>
+      <th>Requirement</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>String</td>
+      <td>filePath</td>
+      <td>required</td>
+      <td>Path of the given file (.pdf or .xml)</td>
+    </tr>
+  </tbody>
+</table>
+
+#### How to request
+
+```bash
+# Will return the process logs (JSON formated)
+curl -X POST "http://localhost:3200/processFile" -F "filePath=/my/file/path/file.pdf"
 ```
-where `report_folder` is the location to accumulate API responses. Then, call `api.generate_report_from_file('example.pdf', 'example_doi')` for each file you want the SciScore of, where `example.pdf` is a file of format `.pdf`, `.doc`, `.docx`, or `.xml`, and `example_doi` is the DOI or other identifier for the file, which will show up in a column of the final table.
-<br>
-When finished with running all your files, call `api.make_csv('out.csv')` to generate a csv with all the results together. Individual reports for each paper are also stored in `report_folder`.
+
+## Result
+
+```json
+{
+  "err": false,
+  "res": { // process logs
+    "stderr": [],
+    "stdout": []
+  }
+}
+```
+
+---
