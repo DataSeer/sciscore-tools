@@ -6,7 +6,7 @@
 - The Python scripts/libraries are encapsulated in a web server (API).
 - The container must be "connected" to the DataSeer (DS) file system (FS). *It will "share" the same FS.*
 - You should not open the port used by the container (internal, non-public process).
-- It will write the results files (report.json and [DS ID file].csv) directly to the DS FS. You must add these files in the DS worklow
+- It will write the results files (report.json and [DS ID file].csv) directly to the DS FS. You must manage these files in the DS worklow
 
 ## Install
 
