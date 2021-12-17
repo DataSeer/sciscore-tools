@@ -59,7 +59,7 @@ This route process the given file (using sciscore-tools).
 curl -X POST "http://localhost:3200/processFile" -F "filePath=/my/file/path/file.pdf"
 ```
 
-## Result
+#### Result
 
 ```json
 {
