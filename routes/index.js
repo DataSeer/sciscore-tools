@@ -13,7 +13,7 @@ router.get(`/`, function (req, res) {
   return res.json({ err: false, res: true });
 });
 
-router.get(`/processFile`, function (req, res) {
+router.post(`/processFile`, function (req, res) {
   let filePath = req.query.filePath;
   if (!filePath) return res.json({ err: true, res: `filePath parameter must be set` });
   return Sciscore.processFile(
