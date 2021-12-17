@@ -14,6 +14,8 @@
 
 You must add auth.json & methods-model.bin files in the lib/ folder (more infos [here](https://github.com/PeterEckmann1/sciscore-tools)).
 
+Create the conf/conf.json file (based on conf/conf.json.default file).
+
 Some useful command lines for creating images and deploying containers
 
 ```bash
