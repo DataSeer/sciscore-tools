@@ -25,7 +25,7 @@ docker run -it -p 3200:3200 -v /home/nicolas/Projects/dataseer-web/data:/app/dat
 
 ## Available routes
 
-### (GET) /processFile/
+### (POST) /processFile/
 
 #### Description
 
