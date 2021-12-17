@@ -12,6 +12,8 @@
 
 ### Docker
 
+You must add auth.json & methods-model.bin files in the lib/ folder (more infos [here](https://github.com/PeterEckmann1/sciscore-tools)).
+
 Some useful command lines for creating images and deploying containers
 
 ```bash
