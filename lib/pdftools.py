@@ -12,8 +12,7 @@ import hashlib
 #todo line number removal doesn't work on 10.1101/2020.11.06.372037
 model = fasttext.load_model('methods-model.bin')
 nlp = English()
-sentencizer = nlp.create_pipe('sentencizer')
-nlp.add_pipe(sentencizer)
+nlp.add_pipe('sentencizer')
 
 REFERENCES_TERMS = ['Citations', 'CITATIONS', 'References', 'REFERENCES', 'Reference', 'REFERENCE', 'Bibliography', 'BIBLIOGRAPHY', 'Works Cited', 'WORKS CITED']
 DISCUSSION_TERMS = ['Discussion', 'DISCUSSION', 'Discussion and Conclusion', 'Discussion and Conclusions', 'DISCUSSION AND CONCLUSION', 'DISCUSSION AND CONCLUSIONS'] #should results and discussion be included?
