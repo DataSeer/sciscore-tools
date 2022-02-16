@@ -45,7 +45,7 @@ class SciScore:
         return r, text
 
     def generate_report_from_file(self, file, paper_id):
-        if paper_id.replace('/', '_') in os.listdir(self.folder):
+        if 'sciscore' in os.listdir(self.folder):
             return
         if file.endswith('.pdf'):
             import pdftools
@@ -72,7 +72,7 @@ class SciScore:
             raise TypeError('invalid file type; please enter a .pdf, .xml, .docx, or .doc')
 
     def generate_report_from_text(self, methods, paper_id):
-        folder_name = f"{self.folder}/{paper_id.replace('/', '_')}"
+        folder_name = f"{self.folder}/sciscore"
         if methods == '':
             methods = 'blank'
         methods = methods.replace('', '').replace('', '')
@@ -174,7 +174,7 @@ class SciScore:
 
     def make_csv(self, file):
         for id in os.listdir(self.folder):
-            self._add_row(json.loads(open(f'{self.folder}/{id}/report.json', 'r', encoding='utf-8').read()))
+            self._add_row(json.loads(open(f'{self.folder}/sciscore/report.json', 'r', encoding='utf-8').read()))
         self._normalize_rows()
         for i, col in enumerate(self.columns):
             if i < 2:
