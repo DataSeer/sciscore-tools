@@ -55,7 +55,19 @@ class SciScore:
             self.generate_report_from_text(docxtools.Document(file).get_text('methods'), paper_id)
         elif file.endswith('.xml'):
             import jatstools
-            self.generate_report_from_text(jatstools.XML(file).get_text('method'), paper_id)
+            method = jatstools.XML(file).get_text('method')
+            result = jatstools.XML(file).get_text('result')
+            data = jatstools.XML(file).get_text('availability')
+            supplementary = jatstools.XML(file).get_text('supplementary')
+            if(not method and not result and not data and not supplementary):
+                print("DocId", paper_id, "has no results")
+                return
+            query = method + "\n\n" + result + "\n\n" + data + "\n\n" + supplementary 
+            #print("\n\n_____________________________________________________________________\n\n\n")
+            #print(query)
+            #print("\n\n\n_____________________________________________________________________\n\n")
+
+            self.generate_report_from_text(query, paper_id)
         else:
             raise TypeError('invalid file type; please enter a .pdf, .xml, .docx, or .doc')
 

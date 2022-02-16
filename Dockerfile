@@ -1,16 +1,8 @@
-FROM ubuntu:20.04
+FROM python:3.10.1
 
-# Set timezone to avoid 'configuring' tzdata
-ENV TZ=Europe/Paris
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-RUN apt-get update
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get install -y curl python3 python3-pip poppler-utils
-
-# RUN npm install
-RUN pip install fasttext spacy numpy requests Unidecode
+RUN pip install fasttext spacy numpy requests Unidecode lxml
+RUN apt update
+RUN yes | apt install xpdf curl
 
 # Install nvm & node v16.11.1
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
