@@ -7,4 +7,3 @@ outDir = sys.argv[3] # output repository
 
 api = sciscore.SciScore(outDir)
 api.generate_report_from_file(filePath, fileId)
-api.make_csv(fileId + '.sciscore.csv')

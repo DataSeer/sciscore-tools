@@ -53,6 +53,10 @@ class SciScore:
         elif file.endswith('.docx') or file.endswith('.doc'):
             import docxtools
             self.generate_report_from_text(docxtools.Document(file).get_text('methods'), paper_id)
+        elif file.endswith('.txt'):
+            with open(file, "r") as text_file:
+                sentences = text_file.read()
+                self.generate_report_from_text(sentences, paper_id)
         elif file.endswith('.xml'):
             import jatstools
             method = jatstools.XML(file).get_text('method')
@@ -193,6 +197,6 @@ class SciScore:
                 if self.columns[j].count(':') > 1 and col.startswith('Rigor') and self.columns[j].startswith((':'.join(col.split(':')[:2]))):
                     self._swap_columns(i + 1, j)
                     break
-        writer = csv.writer(open(file, 'w', encoding='utf-8', newline=''), quoting=csv.QUOTE_ALL)
+        writer = csv.writer(open(f'{self.folder}/sciscore/{file}', 'w', encoding='utf-8', newline=''), quoting=csv.QUOTE_ALL)
         writer.writerow(self.columns)
         writer.writerows(self.rows)

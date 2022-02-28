@@ -28,4 +28,19 @@ router.post(`/processFile`, function (req, res) {
   );
 });
 
+router.post(`/processSentences`, function (req, res) {
+  let filePath = req.body.filePath;
+  if (!filePath) return res.json({ err: true, res: `filePath parameter must be set` });
+  return Sciscore.processSentences(
+    {
+      filePath: filePath
+    },
+    function (err, logs) {
+      if (err) return res.json({ err: true, res: err });
+      if (logs instanceof Error) return res.json({ err: true, res: logs.toString() });
+      return res.json({ err: false, res: logs });
+    }
+  );
+});
+
 module.exports = router;
